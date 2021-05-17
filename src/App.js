@@ -1,9 +1,8 @@
 
 import React,{useState,useEffect} from'react'
 import TodoList from './Components/TodoList'
-
-
-function App() {
+import './App.css'
+const App=()=> {
   let [todo,setTodo]=useState([
     {id:1,completed:true,title:'set1'},
     {id:2,completed:true,title:'set2'},
