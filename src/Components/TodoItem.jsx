@@ -1,22 +1,37 @@
-import React from'react';
+import React,{useContext} from'react';
 import './TodoItem.css';
 import PropTypes from'prop-types';
-
-const TodoItem=(props)=>{
-    return(
-        <li>    
-        <span>
-            <input type='checkbox'/>
-            <strong>{props.index+1}</strong>
-            {props.todo.title}
-            <img src={props.todo.thumbnailUrl}/> 
+import Context from'../Context'
+const TodoItem=({todo,index,onChange})=>{
+  const {removeTodo} =useContext(Context)
+    const classes=[]
+if (todo.completed){
+    classes.push('done')
+}
+console.log(todo)
+  return(
+     
+        <li>  
+               
+        <span className={classes.join('')}> 
+     
+            <input checked={
+                todo.completed} 
+                type='checkbox' 
+                onChange={()=>onChange(todo.id)}/>
+            <strong>{index+1}
+           
+            </strong>
+            {todo.title}
         </span>
-        <button>&times;</button>
+      
+        <button onClick={removeTodo.bind(null,todo.id)}>&times;</button>
       </li>
     )
 }
 TodoItem.prototype={
     todo:PropTypes.object.isRequired,
-    index:PropTypes.number
+    index:PropTypes.number,
+    onChange:PropTypes.func.isRequired
 }
 export default TodoItem
