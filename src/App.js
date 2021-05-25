@@ -1,15 +1,15 @@
 
 import React,{useState,useEffect} from'react'
-
 import './App.css'
 import Context from './Context'
 import AddTodo from './Components/AddTodo'
 import Loader from './Loader'
+import Loader2 from'./loader2'
 const TodoList=React.lazy(()=>
 new Promise(resolve =>{
   setTimeout(()=>{
     resolve(import('./Components/TodoList'))
-  },3000)
+  },0)
 }))
 const App=()=> {
   let [todo,setTodo]=React.useState([
@@ -25,7 +25,7 @@ const App=()=> {
                setTimeout(()=>{
                  setTodo(todo) 
                  setloading(false)}
-                 ,2000)
+                 ,0)
                
              })
        },[])
@@ -55,14 +55,16 @@ const App=()=> {
       <h1>СПИСОК ДЕЛ</h1>
     
     <AddTodo onCreate={addTodo}/>
-    {loading && <Loader/>}
+  
    
       {todo.length?
-       <React.Suspense fallback={<p>loading</p>}> 
+       <React.Suspense fallback={<p>loading components <Loader2/></p>}> 
+       
       <TodoList todos={todo} onToggle={toggleTodo}/>
       </React.Suspense>:
 
       (loading? null:<p>No todo</p>)}
+        {loading && <p>loading from server<Loader/></p>}
     </div>
     </Context.Provider>
   );
