@@ -20,6 +20,13 @@ const AddTodo=({onCreate})=>{
    <form onSubmit={submitHandler}>
        <input value={value} onChange={event=>setvalue(event.target.value)}/>
        <button type="submit">Добавить Задание</button>
+       <select name="todos" className="filter-todo">
+        <option value="all">Все</option>
+        <option value="completed">Выполненные</option>
+        <option value="uncompleted">Невыполненные</option>
+
+    </select>
+   
    </form>
     )
 }               

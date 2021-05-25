@@ -8,7 +8,7 @@ const TodoItem=({todo,index,onChange})=>{
 if (todo.completed){
     classes.push('done')
 }
-console.log(todo)
+
   return(
      
         <li>  
